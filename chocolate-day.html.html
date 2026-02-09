@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Happy Chocolate Day Palei ❤️</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;500&family=Pacifico&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  min-height: 100vh;
+  background: linear-gradient(160deg, #2b140a, #6f3b1e);
+  font-family: 'Poppins', sans-serif;
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.container {
+  padding: 22px;
+  max-width: 420px;
+  width: 100%;
+  text-align: center;
+}
+
+/* Heading */
+h1 {
+  font-family: 'Pacifico', cursive;
+  font-size: 2.2rem;
+}
+
+.sub {
+  margin-top: 10px;
+  font-size: 1rem;
+  opacity: 0.9;
+}
+
+/* Heart */
+.heart {
+  font-size: 55px;
+  margin: 18px 0;
+  animation: heartbeat 1.3s infinite;
+}
+
+/* Image */
+.photo {
+  margin: 15px auto;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 0 30px rgba(255,183,3,0.4);
+}
+
+.photo img {
+  width: 100%;
+  display: block;
+}
+
+/* Letter box */
+.letter {
+  margin-top: 20px;
+  padding: 20px;
+  background: rgba(255,255,255,0.08);
+  border-radius: 18px;
+  box-shadow: 0 0 25px rgba(255,183,3,0.25);
+  min-height: 180px;
+}
+
+/* Button */
+button {
+  margin-top: 18px;
+  padding: 14px 26px;
+  border-radius: 30px;
+  border: none;
+  background: #ffb703;
+  color: #3a1c0f;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+button:hover {
+  transform: scale(1.06);
+  background: #ffd166;
+}
+
+/* Typing text */
+#text, #promise {
+  text-align: left;
+  font-size: 1.05rem;
+  line-height: 1.6;
+  white-space: pre-line;
+}
+
+/* Falling chocolates */
+.choco {
+  position: fixed;
+  top: -40px;
+  font-size: 22px;
+  animation: fall linear infinite;
+  opacity: 0.8;
+}
+
+@keyframes fall {
+  to {
+    transform: translateY(110vh) rotate(360deg);
+  }
+}
+
+@keyframes heartbeat {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.2); }
+  100% { transform: scale(1); }
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+  <h1>Happy Chocolate Day 🍫</h1>
+  <div class="heart">❤️</div>
+
+  <p class="sub">
+    For Palei,<br>
+    from Pranjal
+  </p>
+
+  <!-- Photo -->
+  <div class="photo">
+    <img src="love.jpg" alt="Us">
+  </div>
+
+  <div class="letter">
+    <div id="text"></div>
+    <div id="promise"></div>
+  </div>
+
+  <button onclick="startTyping()">Read My Letter 💌</button>
+  <button onclick="showPromise()">Our Distance Promise ✨</button>
+
+</div>
+
+<script>
+const letter =
+`My dearest Palei,
+
+Happy Chocolate Day 🍫❤️
+
+This picture reminds me of us —
+two hearts, one love,
+even when distance tries to stand between.
+
+Palei, you are sweeter than any chocolate in this world.  
+Distance may separate us, but my heart finds you every day.  
+
+I may not be beside you right now,
+but my heart never leaves you.
+
+Forever yours,
+Pranjal`;
+
+const promiseText =
+`No matter how many kilometers separate us,
+I promise you this:
+
+I will choose you on the hard days.
+I will stay on the silent days.
+I will believe in us on the distant days.
+
+Until distance becomes just a story
+we tell while sitting together,
+holding real chocolates,
+and smiling at how strong we were. ❤️`;
+
+let i = 0;
+let started = false;
+
+function startTyping() {
+  if (started) return;
+  started = true;
+  const speed = 40;
+
+  function type() {
+    if (i < letter.length) {
+      document.getElementById("text").innerHTML += letter.charAt(i);
+      i++;
+      setTimeout(type, speed);
+    }
+  }
+  type();
+}
+
+function showPromise() {
+  document.getElementById("promise").innerHTML = "\n\n" + promiseText;
+}
+
+/* Falling chocolates */
+const emojis = ["🍫","🍬","🍩"];
+
+function dropChoco() {
+  const c = document.createElement("div");
+  c.className = "choco";
+  c.innerHTML = emojis[Math.floor(Math.random()*emojis.length)];
+  c.style.left = Math.random()*100 + "vw";
+  c.style.animationDuration = (Math.random()*3+4)+"s";
+  document.body.appendChild(c);
+  setTimeout(()=>c.remove(),8000);
+}
+
+setInterval(dropChoco, 450);
+</script>
+
+</body>
+</html>
